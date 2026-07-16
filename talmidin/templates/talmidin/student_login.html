@@ -2,41 +2,112 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Student Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Login</title>
     <style>
-      .student-login-box {
-        background-color: rgb(199, 186, 186);
-        width: 400px;
-        height: 70vh;
-        padding: 30px;
-        border-radius: 20px;
-        position: absolute;
-        top: 15%;
-        left: 33%;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      .student-login-title {
-        color: brown;
-        font-style: italic;
-        font-size: 40px;
-      }
+
       body {
-        background-color: antiquewhite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        padding: 24px;
+      }
+
+      .login-box {
+        background: #ffffff;
+        width: 100%;
+        max-width: 440px;
+        padding: 56px 48px;
+        border-radius: 12px;
+        position: relative;
+      }
+      .back {
+        display: inline-block;
+        color: #a52a2a;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 450;
+        margin-bottom: 24px;
+      }
+
+      .login-title {
+        color: #a52a2a;
+        font-size: 24px;
+        font-weight: 450;
+        margin-bottom: 6px;
+      }
+
+      .login-sub {
+        color: #8a7a6b;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 32px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        color: #3d2b1f;
+        font-size: 14px;
+        font-weight: 450;
+        margin-bottom: 6px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 15px;
+        font-family: inherit;
+        border: 1.5px solid #e0d6cc;
+        border-radius: 6px;
+        background: #faf8f6;
+        color: #3d2b1f;
+      }
+
+      .btn-login {
+        display: block;
+        width: 100%;
+        padding: 14px 24px;
+        margin-top: 8px;
+        background: #a52a2a;
+        color: #ffffff;
+        text-decoration: none;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 450;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
       }
     </style>
   </head>
   <body>
-    <div class="student-login-box">
-      <h3 class="student-login-title">Student Log in Page</h3>
+    <div class="login-box">
+      <a href="/" class="back">← Back</a>
+      <h1 class="login-title">Student login</h1>
+      <p class="login-sub">Enter your credentials to continue</p>
       <form method="POST" action="">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Log in</button>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit" class="btn-login">Log in</button>
       </form>
     </div>
   </body>

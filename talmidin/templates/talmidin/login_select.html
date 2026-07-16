@@ -2,48 +2,85 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Log in as</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        background-color: antiquewhite;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5ede3;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        padding: 24px;
       }
+
       .login-box {
-        background-color: rgb(199, 186, 186);
-        width: 400px;
-        height: 70vh;
-        padding: 30px;
-        border-radius: 20px;
-        position: absolute;
-        top: 15%;
-        left: 33%;
+        background: #ffffff;
+        width: 100%;
+        max-width: 440px;
+        padding: 56px 48px;
+        border-radius: 12px;
       }
-      .btn {
-        display: inline-block;
-        background-color: brown;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        font-weight: 600;
-        text-align: center;
-        padding-block: 10px;
-        margin-top: 10px;
-        width: 400px;
-      }
+
       .login-title {
-        color: brown;
-        font-style: italic;
-        font-size: 40px;
+        color: #a52a2a;
+        font-size: 24px;
+        font-weight: 450;
+        margin-bottom: 6px;
+      }
+
+      .login-sub {
+        color: #8a7a6b;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 40px;
+      }
+
+      .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 14px 24px;
+        text-decoration: none;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 450;
+        border-radius: 6px;
+        border: 1px solid transparent;
+      }
+
+      .btn-staff {
+        background: #a52a2a;
+        color: #ffffff;
+      }
+
+      .btn-student {
+        background: #ffffff;
+        color: #a52a2a;
+        border-color: #a52a2a;
       }
     </style>
   </head>
   <body>
     <div class="login-box">
-      <h3 class="login-title">How would you like to sign in?</h3>
-      <div class="btn">
-        <a href="/teacher_login/" class="btn"> Log in as Staff</a>
-      </div>
-      <div class="btn">
-        <a href="/student_login/" class="btn"> Log in as student </a>
+      <h1 class="login-title">Sign in</h1>
+      <p class="login-sub">Select your role to continue</p>
+
+      <div class="btn-group">
+        <a href="/teacher_login/" class="btn btn-staff">Staff</a>
+        <a href="/student_login/" class="btn btn-student">Student</a>
       </div>
     </div>
   </body>
