@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Score Entry</title>
+</head>
+<body>
+    <h1>{{ subject_obj.name }} - {{ class_obj.name }}</h1>
+
+    <form method="POST" action="/save_scores/">
+        {% csrf_token %}
+        {% for student in students %}
+            <div>
+                <h3>{{ student.name }}</h3>
+                <label>CA1</label>
+                <input type="number" name="ca1_{{ student.id }}">
+
+                <label>CA2</label>
+                <input type="number" name="ca2_{{ student.id }}">
+
+                <label>Test</label>
+                <input type="number" name="test_{{ student.id }}">
+
+                <label>Exam</label>
+                <input type="number" name="exam_{{ student.id }}">
+            </div>
+        {% endfor %}
+        <button type="submit">Save Scores</button>
+    </form>
+</body>
+</html>

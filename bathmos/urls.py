@@ -25,4 +25,8 @@ urlpatterns = [
     path('login_select/', views.login_select, name='Select log in '),
     path( 'teacher_login/', views.teacher_login, name='log in as teacher'),
     path('student_login/', views.student_login, name='log in as student'),
+    path('teacher_login_select/', views.teacher_login_select, name='choose as teacher'),
+    path('subject_select/', views.subject_select, name='choose as subject'),
+    path('score_entry/', views.score_entry, name='score entry'),
+    path('save_scores/', views.save_scores, name='save scores'),
 ]
