@@ -2,20 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Select Class</title>
+    <title>Select Subject</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #faf8f6;
+            font-family: sans-serif;
+        }
+        .select-box {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .select-title {
+            color: brown;
+            font-size: 22px;
+            margin-bottom: 24px;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            border: 1.5px solid #e0d6cc;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            background: #faf8f6;
+            color: #3d2b1f;
+        }
+        .btn-next {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: brown;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
-    <form method="POST" action="/score_entry/">
-    {% csrf_token %}
-     <input type="hidden" name="class_id" value="{{ class_obj.id }}">
-    <select name="subject_id">
-    {% for subject in class_obj.subjects.all %}
-        <option value="{{ subject.id }}">{{ subject.name }}</option>
-    {% endfor %}
-</select>
-    <button type="submit">Next</button>
-</form>
-
+    <div class="select-box">
+        <h2 class="select-title">Select Subject</h2>
+        <form method="POST" action="/score_entry/">
+            {% csrf_token %}
+            <input type="hidden" name="class_id" value="{{ class_obj.id }}">
+            <select name="subject_id">
+                {% for subject in class_obj.subjects.all %}
+                    <option value="{{ subject.id }}">{{ subject.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn-next">Next</button>
+        </form>
+    </div>
 </body>
 </html>

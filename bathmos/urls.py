@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from talmidin import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -29,4 +31,9 @@ urlpatterns = [
     path('subject_select/', views.subject_select, name='choose as subject'),
     path('score_entry/', views.score_entry, name='score entry'),
     path('save_scores/', views.save_scores, name='save scores'),
+    path('student_scoresheet/', views.student_scoresheet, name='student scoresheet'),
+    path('student_scoresheet_pdf/', views.student_scoresheet_pdf, name='pdf'),
+    path('logout/', views.logout_view, name='logout'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

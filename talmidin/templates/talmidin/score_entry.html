@@ -3,29 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <title>Score Entry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #faf8f6;
+            font-family: sans-serif;
+            padding: 40px;
+        }
+        .page-title {
+            color: brown;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .student-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .student-name {
+            color: #3d2b1f;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        .score-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .score-field label {
+            font-size: 12px;
+            color: #8a7a6b;
+        }
+        .score-field input {
+            width: 70px;
+            padding: 8px;
+            border: 1.5px solid #e0d6cc;
+            border-radius: 6px;
+            background: #faf8f6;
+        }
+        .btn-save {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: brown;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ subject_obj.name }} - {{ class_obj.name }}</h1>
+    <h1 class="page-title">{{ subject_obj.name }} - {{ class_obj.name }}</h1>
 
     <form method="POST" action="/save_scores/">
         {% csrf_token %}
+        <input type="hidden" name="class_id" value="{{ class_obj.id }}">
+        <input type="hidden" name="subject_id" value="{{ subject_obj.id }}">
+
         {% for student in students %}
-            <div>
-                <h3>{{ student.name }}</h3>
+        <div class="student-card">
+            <div class="student-name">{{ student.name }}</div>
+
+            <div class="score-field">
                 <label>CA1</label>
-                <input type="number" name="ca1_{{ student.id }}">
-
-                <label>CA2</label>
-                <input type="number" name="ca2_{{ student.id }}">
-
-                <label>Test</label>
-                <input type="number" name="test_{{ student.id }}">
-
-                <label>Exam</label>
-                <input type="number" name="exam_{{ student.id }}">
+                <input type="number" name="ca1_{{ student.id }}" max="10">
             </div>
+            <div class="score-field">
+                <label>CA2</label>
+                <input type="number" name="ca2_{{ student.id }}" max="10">
+            </div>
+            <div class="score-field">
+                <label>Test</label>
+                <input type="number" name="test_{{ student.id }}" max="20">
+            </div>
+            <div class="score-field">
+                <label>Exam</label>
+                <input type="number" name="exam_{{ student.id }}" max="60">
+            </div>
+        </div>
         {% endfor %}
-        <button type="submit">Save Scores</button>
+
+        <button type="submit" class="btn-save">Save Scores</button>
     </form>
 </body>
 </html>

@@ -1,57 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Scoresheet</title>
+    <button><a href="/logout/">Log out</a></button>
     <style>
-      page {
-        scroll-behavior: smooth;
-      }
-      .header {
-        display: flex;
-        height: 15vh;
-        gap: 16px;
-        justify-content: space-between;
-      }
-      .header-wrap {
-        padding: 10px;
-        display: flex;
-        height: 100%;
-        align-items: center;
-        gap: 16px;
-      }
-      .header-logo {
-        height: 100%;
-        aspect-ratio: 1;
-      }
-
-      .btn {
-        display: inline-block;
-        background-color: brown;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        font-weight: 600;
-        text-align: center;
-        padding-inline: 16px;
-        padding-block: 8px;
-      }
-      .hero {
-        display: relative;
-      }
-      .hero-image {
-        height: 50vh;
-        width: 100%;
-        display: block;
-        object-fit: cover;
-      }
-      .hero-text {
-        margin-top: 20px;
-        font-size: 15px;
-        color: Black;
-        text-shadow: 0 0 50px white;
-      }
+        .passport-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        body { font-family: sans-serif;
+         padding: 30px; }
+        .top-bar { display: flex;
+         align-items: center;
+          gap: 15px; margin-bottom: 30px; }
+        .top-bar img { width: 60px; height: 60px; }
+        .info-block { display: flex; gap: 20px; align-items: center; margin-bottom: 30px; }
+        .passport-img { width: 120px; height: 120px; object-fit: cover; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: center; }
+        th { background: brown; color: white; }
+        .remark-section { margin-top: 40px; }
+        .remark-section p { margin-bottom: 20px; }
     </style>
-  </head>
-  <body></body>
+</head>
+<body>
+    <h1><strong>Name:</strong>{{ student.name }}</h1>
+    <img src="{{ student.passport.url }}" alt="Student passport" class="passport-img">
+   <p><strong>Date of Birth:</strong> {{ student.date_of_birth }}</p>
+
+    <table>
+        <tr>
+            <th>Subject</th><th>CA1</th><th>CA2</th><th>Test</th><th>Exam</th>
+            <th>Total</th><th>Grade</th><th>Highest</th><th>Lowest</th>
+        </tr>
+        {% for row in score_data %}
+        <tr>
+            <td>{{ row.subject }}</td>
+            <td>{{ row.ca1 }}</td>
+            <td>{{ row.ca2 }}</td>
+            <td>{{ row.test }}</td>
+            <td>{{ row.exam }}</td>
+            <td>{{ row.total }}</td>
+            <td>{{ row.grade }}</td>
+            <td>{{ row.highest }}</td>
+            <td>{{ row.lowest }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="remark-section">
+        <p><strong>Remark:</strong> ___________________________</p>
+        <p><strong>Teacher's Signature:</strong> ___________________________</p>
+    </div>
+    <button><a href="/student_scoresheet_pdf/">Download PDF</a></button>
+<body/>
 </html>
