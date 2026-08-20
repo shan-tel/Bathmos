@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from reportlab.platypus import Table, TableStyle
 from reportlab.lib import colors
 from .models import ClassName, Student, Subject, Score, Teacher
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'talmidin/index.html')
@@ -221,3 +222,15 @@ def student_scoresheet_pdf(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+def setup_admin(request):
+    if User.objects.filter(username='admin').exists():
+        return HttpResponse("Admin already exists.")
+
+    User.objects.create_superuser(
+        username='admin',
+        password='BathmosAdmin123!',
+        email='admin@bathmos.com'
+    )
+
+    return HttpResponse("Admin created successfully.")
