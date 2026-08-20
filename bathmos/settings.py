@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-mdephk_&@%2$v231=i++a98u$f3yaf-#(tw0*!5b@f9$qp6_&v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bathmos.pxxlspace.cv', 'localhost', '127.0.0.1']
 
 
 # Application definition
