@@ -223,14 +223,14 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-def setup_admin(request):
-    if User.objects.filter(username='admin').exists():
-        return HttpResponse("Admin already exists.")
-
-    User.objects.create_superuser(
-        username='admin',
-        password='BathmosAdmin123!',
-        email='admin@bathmos.com'
-    )
-
-    return HttpResponse("Admin created successfully.")
+# def setup_admin(request):
+#     if User.objects.filter(username='admin').exists():
+#         return HttpResponse("Admin already exists.")
+#
+#     User.objects.create_superuser(
+#         username='admin',
+#         password='BathmosAdmin123!',
+#         email='admin@bathmos.com'
+#     )
+#
+#     return HttpResponse("Admin created successfully.")
