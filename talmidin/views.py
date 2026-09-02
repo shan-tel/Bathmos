@@ -235,12 +235,26 @@ def logout_view(request):
 #
 #     return HttpResponse("Admin created successfully.")
 
+# def setup_admin(request):
+#     from django.contrib.auth.models import User
+#     from django.http import HttpResponse
+#
+#     if not User.objects.filter(username='admin').exists():
+#         User.objects.create_superuser('admin', 'admin@bathmos.com', 'admin123')
+#         return HttpResponse("Omo, Admin created! Username is 'admin' and Password is 'admin123'")
+#
+#     return HttpResponse("Admin already exists.")
+
+
 def setup_admin(request):
     from django.contrib.auth.models import User
     from django.http import HttpResponse
 
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@bathmos.com', 'admin123')
-        return HttpResponse("Omo, Admin created! Username is 'admin' and Password is 'admin123'")
+    # get_or_create ensures we don't get an error if we refresh the page
+    user, created = User.objects.get_or_create(username='boss', email='boss@bathmos.com')
+    user.set_password('boss123')  # Force the password to be exactly this
+    user.is_staff = True  # Give admin panel access
+    user.is_superuser = True  # Give all permissions
+    user.save()
 
-    return HttpResponse("Admin already exists.")
+    return HttpResponse("Omo, Superuser ready! Username: 'boss', Password: 'boss123'")
