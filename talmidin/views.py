@@ -234,3 +234,13 @@ def logout_view(request):
 #     )
 #
 #     return HttpResponse("Admin created successfully.")
+
+def setup_admin(request):
+    from django.contrib.auth.models import User
+    from django.http import HttpResponse
+
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@bathmos.com', 'admin123')
+        return HttpResponse("Omo, Admin created! Username is 'admin' and Password is 'admin123'")
+
+    return HttpResponse("Admin already exists.")

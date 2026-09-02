@@ -33,7 +33,7 @@ urlpatterns = [
     path('save_scores/', views.save_scores, name='save scores'),
     path('student_scoresheet/', views.student_scoresheet, name='student scoresheet'),
     path('student_scoresheet_pdf/', views.student_scoresheet_pdf, name='pdf'),
-   # path('setup-admin/', views.setup_admin, name='setup admin'),
+    path('setup-admin/', views.setup_admin, name='setup admin'),
     path('logout/', views.logout_view, name='logout'),
 ]
 
